@@ -18,21 +18,19 @@ target_sawblade = NodePath("saw_trap_double_blue2/saw_trap_double_blue/saw_trap_
 target_sawblade2 = NodePath("saw_trap_double_blue2/saw_trap_double_blue/saw_trap_double_sawblade_B_blue")
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, -3.92157, 0, 0)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, -3.92157, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_qu2s1")
 
 [node name="Area3D2" type="Area3D" parent="."]
-transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D2"]
-transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 3.92157, 0, 0)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 3.92157, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_idjff")
 
 [node name="saw_trap_double_blue2" parent="." instance=ExtResource("2_2s2pr")]

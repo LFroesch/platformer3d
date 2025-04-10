@@ -3,7 +3,7 @@ extends CharacterBody3D
 
 @export var jump_height : float = 5.0
 @export var jump_time_to_peak : float = 0.4
-@export var jump_time_to_descent : float = 0.3
+@export var jump_time_to_descent : float = 0.4
 
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 @onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak) * -1.0
@@ -35,12 +35,13 @@ func move_logic(delta) -> void:
 		
 	velocity.x = vel_2d.x
 	velocity.z = vel_2d.y
+	
 func jump_logic(delta) -> void:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_velocity
 	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
-	velocity.y -= gravity * delta
+	velocity.y -= gravity * delta * .9
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("exit"):
@@ -48,7 +49,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("menu"):
 		reload_scene()
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	reload_scene()
 
 func reload_scene() -> void:

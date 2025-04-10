@@ -18,11 +18,11 @@ func _ready():
 	conveyor_area.connect("body_entered", _on_conveyor_area_body_entered)
 	conveyor_area.connect("body_exited", _on_conveyor_area_body_exited)
 	
-func _process(delta):
+func _process(_delta):
 	if tread_material:
 		tread_material.set_shader_parameter("scroll_speed", conveyor_speed)
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Apply force to all bodies on the conveyor
 	for body in bodies_on_conveyor:
 		if body is CharacterBody3D:

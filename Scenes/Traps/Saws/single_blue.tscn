@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dowyb4l2rf2w4"]
 
-[ext_resource type="Script" uid="uid://ccerq5r5ongpg" path="res://Scenes/Traps/Saws/single_blue.gd" id="1_m4d3y"]
+[ext_resource type="Script" uid="uid://ccerq5r5ongpg" path="res://Scenes/Traps/Saws/object_with_rotation.gd" id="1_m4d3y"]
 [ext_resource type="PackedScene" uid="uid://bg5ik2ccwhgbx" path="res://PlatformerAssetPack/Assets/gltf/blue/saw_trap_blue.gltf" id="1_yc44c"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m4d3y"]
@@ -8,6 +8,7 @@ data = PackedVector3Array(0.5853, 0.25, -2.9424, 0.7014, 0.125, -3.3251, 1.1481,
 
 [node name="single_blue" type="AnimatableBody3D"]
 script = ExtResource("1_m4d3y")
+target_object = NodePath("saw_trap_blue2/saw_trap_blue/saw_trap_sawblade_blue")
 
 [node name="saw_trap_blue2" parent="." instance=ExtResource("1_yc44c")]
 
@@ -19,7 +20,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 0, 0, 0)
+transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_m4d3y")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
