@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://2cea52v5l36a"]
+[gd_scene load_steps=12 format=3 uid="uid://2cea52v5l36a"]
 
 [ext_resource type="PackedScene" uid="uid://dycdghofbmmei" path="res://Scenes/Conveyors/Blue/4x_8x_1_blue_2.tscn" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dw1mc0s1ynm82" path="res://test_level.gd" id="1_ehkex"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvrmkoqhae1ft" path="res://Scenes/Traps/void_zone.tscn" id="7_vbegm"]
 [ext_resource type="PackedScene" uid="uid://dowyb4l2rf2w4" path="res://Scenes/Traps/Saws/single_blue.tscn" id="9_xersf"]
 [ext_resource type="PackedScene" uid="uid://b7i0vpauyfxhg" path="res://Scenes/Traps/Saws/double_blue.tscn" id="10_00tp4"]
+[ext_resource type="PackedScene" uid="uid://bm6oew1txq56x" path="res://Scenes/MovingPlatforms/Blue/6x_6x_4_blue.tscn" id="11_77dp3"]
 [ext_resource type="PackedScene" uid="uid://cq5gowsrst4ot" path="res://Player/player.tscn" id="12_5tkv4"]
 
 [node name="TestScene" type="Node3D"]
@@ -67,6 +68,9 @@ target_sawblade = NodePath("saw_trap_blue2/saw_trap_blue/saw_trap_sawblade_blue"
 
 [node name="double_blue" parent="Traps" instance=ExtResource("10_00tp4")]
 transform = Transform3D(0.806445, -0.591309, 0, 0.591309, 0.806445, 0, 0, 0, 1, 5.035, 10.0179, -14.1209)
+
+[node name="6x6x4_blue" parent="Traps" instance=ExtResource("11_77dp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98825, -4.57253, -15.3918)
 
 [connection signal="body_entered" from="Traps/VoidZone/Area3D" to="Player" method="_on_area_3d_body_entered"]
 
