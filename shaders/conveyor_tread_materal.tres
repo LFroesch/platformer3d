@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://d0tm12cu7dk26"]
+
+[ext_resource type="Shader" uid="uid://cbchoarvhnr6g" path="res://shaders/conveyor_shader.gdshader" id="1_61y0y"]
+[ext_resource type="Texture2D" uid="uid://cwkfp5kow66kk" path="res://PlatformerAssetPack/Textures/threads.png" id="2_x66bf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_61y0y")
+shader_parameter/texture_albedo = ExtResource("2_x66bf")
+shader_parameter/scroll_speed = 0.5

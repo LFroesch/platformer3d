@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1q8yc3clbkcw"]
+
+[ext_resource type="PackedScene" uid="uid://cmv3etg0cvqxp" path="res://PlatformerAssetPack/Assets/gltf/blue/conveyor_4x4x1_blue.gltf" id="1_ip7c0"]
+[ext_resource type="Script" uid="uid://yc8nqx0oqece" path="res://Scenes/Conveyors/conveyor.gd" id="2_enpkj"]
+[ext_resource type="Material" uid="uid://d0tm12cu7dk26" path="res://shaders/conveyor_tread_materal.tres" id="3_cotba"]
+[ext_resource type="PackedScene" uid="uid://b5xka1en5aw2v" path="res://Scenes/Conveyors/conveyor_area.tscn" id="4_6odo2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6odo2"]
+size = Vector3(4, 0.2, 3.7)
+
+[node name="conveyor_4x4x1_blue2" instance=ExtResource("1_ip7c0")]
+script = ExtResource("2_enpkj")
+
+[node name="conveyor_4x4x1_blue" parent="." index="0"]
+surface_material_override/1 = ExtResource("3_cotba")
+
+[node name="ConveyorArea" parent="." index="1" instance=ExtResource("4_6odo2")]
+
+[node name="CollisionShape3D" parent="ConveyorArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.0581055)
+shape = SubResource("BoxShape3D_6odo2")
+
+[editable path="ConveyorArea"]
