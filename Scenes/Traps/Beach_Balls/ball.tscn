@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b30whm4lqvr2y"]
+
+[ext_resource type="PackedScene" uid="uid://cmmldlgdnbhwh" path="res://PlatformerAssetPack/Assets/gltf/blue/ball_blue.gltf" id="1_wti5h"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wti5h"]
+radius = 1.0
+
+[node name="Ball" type="RigidBody3D"]
+mass = 0.1
+
+[node name="ball_blue2" parent="." instance=ExtResource("1_wti5h")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wti5h")
+
+[editable path="ball_blue2"]

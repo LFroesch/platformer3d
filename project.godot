@@ -15,6 +15,10 @@ run/main_scene="uid://2cea52v5l36a"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CheckpointManager="*res://Scenes/Checkpoints/checkpoint_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -24,8 +28,8 @@ window/size/mode=3
 [file_customization]
 
 folder_colors={
-"res://Player/": "green",
 "res://Scenes/": "green",
+"res://Scenes/Player/": "green",
 "res://shaders/": "purple"
 }
 
@@ -123,6 +127,8 @@ exit={
 
 3d_physics/layer_1="terrain"
 3d_physics/layer_2="player"
+3d_physics/layer_3="collectibles"
+3d_physics/layer_4="projectiles"
 
 [rendering]
 

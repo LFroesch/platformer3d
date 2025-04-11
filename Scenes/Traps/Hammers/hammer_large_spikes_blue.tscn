@@ -11,6 +11,7 @@ data = PackedVector3Array(-0.17204, 7.5, -0.415406, 0.172086, 3.55003, -0.415407
 
 [node name="hammer_large_spikes_blue" type="AnimatableBody3D"]
 script = ExtResource("1_w4pox")
+target_object = NodePath("hammer_large_spikes_blue2/hammer_large_spikes_blue")
 rotation_axis = Vector3(0, 0, -1)
 rotation_speed = 1.0
 rotation_type = 2

@@ -8,6 +8,7 @@ data = PackedVector3Array(0.125, 0, -0.216506, 0.216506, 0.8, -0.125, 0.125, 0.8
 
 [node name="long_quad_blue" type="AnimatableBody3D"]
 script = ExtResource("1_dippl")
+target_object = NodePath("swiper_quad_long_blue2/swiper_quad_long_blue")
 
 [node name="swiper_quad_long_blue2" parent="." instance=ExtResource("2_t6ypx")]
 

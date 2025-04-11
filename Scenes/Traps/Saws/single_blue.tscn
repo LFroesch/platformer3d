@@ -12,17 +12,18 @@ target_object = NodePath("saw_trap_blue2/saw_trap_blue/saw_trap_sawblade_blue")
 
 [node name="saw_trap_blue2" parent="." instance=ExtResource("1_yc44c")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConcavePolygonShape3D_m4d3y")
-
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="saw_trap_blue2/saw_trap_blue/StaticBody3D" index="1"]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="saw_trap_blue2/saw_trap_blue/StaticBody3D/Area3D"]
 transform = Transform3D(1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_m4d3y")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_m4d3y")
+disabled = true
+
+[connection signal="body_entered" from="saw_trap_blue2/saw_trap_blue/StaticBody3D/Area3D" to="." method="_on_area_3d_body_entered"]
 
 [editable path="saw_trap_blue2"]
