@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="platformer3d"
-run/main_scene="uid://2cea52v5l36a"
+run/main_scene="uid://dfpta77l8v38o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,8 +29,10 @@ window/size/mode=3
 
 folder_colors={
 "res://Scenes/": "green",
+"res://Scenes/Levels/": "red",
 "res://Scenes/Player/": "green",
-"res://shaders/": "purple"
+"res://Scripts/": "purple",
+"res://Scripts/shaders/": "purple"
 }
 
 [importer_defaults]

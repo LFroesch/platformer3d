@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d328k25q6p7rt"]
+
+[ext_resource type="Script" uid="uid://b1x4o687fp7lf" path="res://Scenes/Traps/Signs/rigidbody3d.gd" id="1_f3f7g"]
+[ext_resource type="PackedScene" uid="uid://cji5nr8fxfjmw" path="res://PlatformerAssetPack/Assets/gltf/neutral/cone.gltf" id="2_t0n3y"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qdeq2"]
+height = 0.627022
+radius = 0.250488
+
+[node name="Cone" type="RigidBody3D"]
+mass = 0.1
+script = ExtResource("1_f3f7g")
+
+[node name="cone2" parent="." instance=ExtResource("2_t0n3y")]
+
+[node name="CollisionShape3D" parent="cone2/cone/StaticBody3D" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.315189, 0)
+shape = SubResource("CylinderShape3D_qdeq2")
+
+[editable path="cone2"]

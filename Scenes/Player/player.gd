@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	move_logic(delta)
 	jump_logic(delta)
 	move_and_slide()
+	physics_logic()
 
 func move_logic(delta) -> void:
 	movement_input = Input.get_vector("left", "right", "forward", "backward").rotated(-camera.global_rotation.y)
@@ -77,3 +78,9 @@ func reload_scene() -> void:
 		get_tree().reload_current_scene.call_deferred()
 		timer.queue_free()
 	)
+
+func physics_logic() -> void:
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider.has_method("knock"):
+			collider.knock(-get_slide_collision(i).get_normal())

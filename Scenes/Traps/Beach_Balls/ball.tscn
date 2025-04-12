@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b30whm4lqvr2y"]
+[gd_scene load_steps=4 format=3 uid="uid://b30whm4lqvr2y"]
 
+[ext_resource type="Script" uid="uid://b1x4o687fp7lf" path="res://Scenes/Traps/Signs/rigidbody3d.gd" id="1_mmnil"]
 [ext_resource type="PackedScene" uid="uid://cmmldlgdnbhwh" path="res://PlatformerAssetPack/Assets/gltf/blue/ball_blue.gltf" id="1_wti5h"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wti5h"]
@@ -7,8 +8,13 @@ radius = 1.0
 
 [node name="Ball" type="RigidBody3D"]
 mass = 0.1
+script = ExtResource("1_mmnil")
+damping = 1.2
 
 [node name="ball_blue2" parent="." instance=ExtResource("1_wti5h")]
+
+[node name="CollisionShape3D" parent="ball_blue2/ball_blue/StaticBody3D" index="0"]
+disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_wti5h")

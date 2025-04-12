@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cghphesu5cw0d" path="res://PlatformerAssetPack/Assets/gltf/blue/conveyor_4x8x1_blue.gltf" id="1_q7i8m"]
 [ext_resource type="Script" uid="uid://yc8nqx0oqece" path="res://Scenes/Conveyors/conveyor.gd" id="2_r3tyt"]
-[ext_resource type="Shader" uid="uid://cbchoarvhnr6g" path="res://shaders/conveyor_shader.gdshader" id="3_5735a"]
+[ext_resource type="Shader" uid="uid://cbchoarvhnr6g" path="res://Scripts/shaders/conveyor_shader.gdshader" id="3_5735a"]
 [ext_resource type="Texture2D" uid="uid://njbh1nvfcinx" path="res://PlatformerAssetPack/Assets/gltf/blue/threads.png" id="4_5735a"]
 [ext_resource type="PackedScene" uid="uid://b5xka1en5aw2v" path="res://Scenes/Conveyors/conveyor_area.tscn" id="5_iwb2l"]
 

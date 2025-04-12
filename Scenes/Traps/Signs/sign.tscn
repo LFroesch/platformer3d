@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://742qyq3f0flo"]
+
+[ext_resource type="PackedScene" uid="uid://bvqir10ubrfc8" path="res://PlatformerAssetPack/Assets/gltf/neutral/sign.gltf" id="1_7jjma"]
+[ext_resource type="Script" uid="uid://b1x4o687fp7lf" path="res://Scenes/Traps/Signs/rigidbody3d.gd" id="1_ps4pe"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7jjma"]
+height = 1.20593
+radius = 0.321777
+
+[node name="Sign" type="RigidBody3D"]
+mass = 0.1
+script = ExtResource("1_ps4pe")
+
+[node name="sign2" parent="." instance=ExtResource("1_7jjma")]
+
+[node name="CollisionShape3D" parent="sign2/sign/StaticBody3D" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.597017, 0)
+shape = SubResource("CylinderShape3D_7jjma")
+
+[editable path="sign2"]
