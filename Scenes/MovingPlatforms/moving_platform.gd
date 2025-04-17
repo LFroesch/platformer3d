@@ -6,6 +6,7 @@ class_name MovingPlatform
 @export var move_direction: Vector3 = Vector3(0, 0, 0)
 @export var speed: float = 1.0
 @export var wait_time: float = 0.5
+@export var start_delay: float = 0.0
 
 var start_position: Vector3
 var end_position: Vector3
@@ -13,12 +14,20 @@ var current_direction: int = 1
 var is_waiting: bool = false
 var wait_timer: float = 0.0
 var t: float = 0.0
+var initial_delay_complete: bool = false
+var initial_delay_timer: float = 0.0
 
 func _ready():
 	start_position = global_position
 	end_position = start_position + move_direction
 
 func _physics_process(delta):
+	if not initial_delay_complete:
+		initial_delay_timer += delta
+		if initial_delay_timer >= start_delay:
+			initial_delay_complete = true
+		return
+		
 	if is_waiting:
 		wait_timer += delta
 		if wait_timer >= wait_time:

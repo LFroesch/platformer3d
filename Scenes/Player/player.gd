@@ -58,8 +58,6 @@ func jump_logic(delta) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("exit"):
 		get_tree().quit()
-	elif event.is_action_pressed("menu"):
-		reload_scene()
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
 	reload_scene()

@@ -16,11 +16,11 @@ data = PackedVector3Array(1.4117, 0.0987, -0.171, 1.4677, 0, -0.1975, 1.4677, 0.
 script = ExtResource("1_lyln1")
 barrel_object = NodePath("cannon_base_blue2/cannon_base_blue/cannon_turret_blue/cannon_barrel_blue")
 barrel_tilt_range = 0.0
+auto_start_barrel_tilt = false
 shoot_interval = 3.0
-bullet_speed = 12.5
 bullet_spawn_point = NodePath("cannon_base_blue2/cannon_base_blue/cannon_turret_blue/cannon_barrel_blue/Node3D")
 target_object = NodePath("cannon_base_blue2/cannon_base_blue/cannon_turret_blue")
-rotation_speed = 1.0
+rotation_speed = 0.5
 rotation_type = 3
 
 [node name="cannon_base_blue2" parent="." instance=ExtResource("1_xyleo")]
@@ -31,7 +31,7 @@ rotation_type = 3
 shape = SubResource("ConcavePolygonShape3D_weqv3")
 
 [node name="cannon_barrel_blue" parent="cannon_base_blue2/cannon_base_blue/cannon_turret_blue" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2.28882e-05)
+transform = Transform3D(1, 0, 0, 0, 0.999048, -0.0436194, 0, 0.0436194, 0.999048, 0, 2, 2.28882e-05)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="cannon_base_blue2/cannon_base_blue/cannon_turret_blue/cannon_barrel_blue" index="0"]
 
@@ -43,8 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3.03984e-06)
-visible = false
 shape = SubResource("ConcavePolygonShape3D_xyleo")
-disabled = true
 
 [editable path="cannon_base_blue2"]

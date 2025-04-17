@@ -9,11 +9,14 @@ class_name Cannon
 @export var barrel_tilt_range: float = 15.0
 @export var auto_start_barrel_tilt: bool = true
 @export var reverse_barrel_tilt: bool = false
+@export_enum("Oscillate", "Down_Then_Reset", "Up_Then_Reset") var tilt_pattern: int = 0
+@export var reset_pause_time: float = 0.5
 
 @export_group("Shooting Settings")
 @export var auto_shoot: bool = true
 @export var shoot_interval: float = 2.0
-@export var bullet_speed: float = 20.0
+@export var shoot_delay: float = 0.0
+@export var bullet_speed: float = 12.5
 @export var bullet_spawn_point: NodePath
 
 var bullet_scene = preload("res://Scenes/Traps/Cannons/cannon_bullet.tscn")
@@ -23,6 +26,8 @@ var current_barrel_tilt: float = 0.0
 var barrel_tilt_direction: int = 1
 var shoot_timer: Timer = null
 var spawn_point: Node3D = null
+var reset_timer: Timer = null
+var is_paused_at_reset: bool = false
 
 func _ready() -> void:
 	super._ready()
@@ -37,19 +42,34 @@ func _ready() -> void:
 	
 	shoot_timer = Timer.new()
 	shoot_timer.one_shot = false
+	shoot_timer.wait_time = shoot_interval
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 	add_child(shoot_timer)
+	
+	reset_timer = Timer.new()
+	reset_timer.one_shot = true
+	reset_timer.wait_time = reset_pause_time
+	reset_timer.timeout.connect(_on_reset_timer_timeout)
+	add_child(reset_timer)
 	
 	if auto_start_barrel_tilt and barrel_node:
 		start_barrel_tilt()
 		
 	if auto_shoot:
-		start_shooting()
+		if shoot_delay > 0:
+			var delay_timer = Timer.new()
+			delay_timer.one_shot = true
+			delay_timer.wait_time = shoot_delay
+			delay_timer.timeout.connect(func(): shoot_timer.start())
+			add_child(delay_timer)
+			delay_timer.start()
+		else:
+			start_shooting()
 
 func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	
-	if is_barrel_tilting and barrel_node:
+	if is_barrel_tilting and barrel_node and not is_paused_at_reset:
 		var tilt_amount = barrel_tilt_speed * delta * barrel_tilt_direction
 		
 		if reverse_barrel_tilt:
@@ -57,15 +77,48 @@ func _physics_process(delta: float) -> void:
 
 		var new_tilt = current_barrel_tilt + tilt_amount
 		
-		if abs(new_tilt) > deg_to_rad(barrel_tilt_range):
-			barrel_tilt_direction = -barrel_tilt_direction
-			tilt_amount = barrel_tilt_speed * delta * barrel_tilt_direction
+		match tilt_pattern:
+			0: # Oscillate (original behavior)
+				if abs(new_tilt) > deg_to_rad(barrel_tilt_range):
+					barrel_tilt_direction = -barrel_tilt_direction
+					tilt_amount = barrel_tilt_speed * delta * barrel_tilt_direction
+					
+					if reverse_barrel_tilt:
+						tilt_amount = -tilt_amount
 			
-			if reverse_barrel_tilt:
-				tilt_amount = -tilt_amount
+			1: # Down_Then_Reset
+				# For downward tilt
+				var is_at_limit = false
+				if barrel_tilt_direction > 0 and new_tilt > deg_to_rad(barrel_tilt_range):
+					is_at_limit = true
+				elif barrel_tilt_direction < 0 and abs(new_tilt) < 0.01:
+					is_at_limit = true
+					is_paused_at_reset = true
+					reset_timer.start()
+				
+				if is_at_limit:
+					barrel_tilt_direction = -barrel_tilt_direction
+					tilt_amount = 0  # Stop at the limit
+			
+			2: # Up_Then_Reset
+				# For upward tilt
+				var is_at_limit = false
+				if barrel_tilt_direction < 0 and new_tilt < -deg_to_rad(barrel_tilt_range):
+					is_at_limit = true
+				elif barrel_tilt_direction > 0 and abs(new_tilt) < 0.01:
+					is_at_limit = true
+					is_paused_at_reset = true
+					reset_timer.start()
+				
+				if is_at_limit:
+					barrel_tilt_direction = -barrel_tilt_direction
+					tilt_amount = 0  # Stop at the limit
 		
 		barrel_node.rotate(barrel_tilt_axis.normalized(), tilt_amount)
 		current_barrel_tilt += tilt_amount
+
+func _on_reset_timer_timeout() -> void:
+	is_paused_at_reset = false
 
 func start_barrel_tilt() -> void:
 	is_barrel_tilting = true
