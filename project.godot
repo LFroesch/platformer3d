@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="platformer3d"
-run/main_scene="uid://sx80ucsa873d"
+run/main_scene="uid://dfpta77l8v38o"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CheckpointManager="*res://Scenes/Checkpoints/checkpoint_manager.gd"
+StatsManager="*res://Scenes/UI/stats_manager.gd"
+CollectibleManager="*res://Scenes/Collectibles/collectible_manager.gd"
 
 [display]
 
@@ -34,6 +36,10 @@ folder_colors={
 "res://Scripts/": "purple",
 "res://Scripts/shaders/": "purple"
 }
+
+[global_group]
+
+checkpoints=""
 
 [importer_defaults]
 

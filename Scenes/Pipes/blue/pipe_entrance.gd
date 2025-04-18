@@ -1,23 +1,22 @@
 extends MovingPlatform
-class_name JumpPlatform
 
-@export var jump_force: float = 50.0
-@export var jump_direction: Vector3 = Vector3(0, 1, 0)
+@export_group("Pipe Teleport")
+@export var target_level: String = ''
+@export var target_location = Vector3(0,2,0)
 @export var debug_only: bool = false
 
-@onready var jump_area: Area3D = $button_base_blue2/button_base_blue/StaticBody3D/Area3D
+@onready var area_3d: Area3D = $pipe_end_blue2/pipe_end_blue/StaticBody3D/Area3D
 
-func _ready():
+
+func _ready() -> void:
 	super._ready()
-	jump_area.body_entered.connect(_on_jump_area_body_entered)
-	jump_direction = jump_direction.normalized()
-	
+	area_3d.body_entered.connect(_on_area_3d_body_entered)
 	if debug_only and not OS.has_feature("editor"):
 		# Hide the platform
 		visible = false
 		# Disable collision
-		jump_area.monitoring = false
-		jump_area.monitorable = false
+		area_3d.monitoring = false
+		area_3d.monitorable = false
 		_disable_all_collision_shapes(self)
 
 func _disable_all_collision_shapes(node):
@@ -29,8 +28,7 @@ func _disable_all_collision_shapes(node):
 		# Recurse through children
 		if child.get_child_count() > 0:
 			_disable_all_collision_shapes(child)
-			
-func _on_jump_area_body_entered(body):
-	if body is CharacterBody3D:
-		if "velocity" in body:
-			body.velocity = jump_direction * jump_force
+
+func _on_area_3d_body_entered(_body: Node3D) -> void:
+	var current_scene = get_tree().current_scene
+	current_scene.switch_level(target_level, target_location)

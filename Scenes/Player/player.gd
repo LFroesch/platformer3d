@@ -1,4 +1,4 @@
-# player.gd
+# player.gd (child to level node)
 extends CharacterBody3D
 
 @export var jump_height : float = 5.0
@@ -20,11 +20,19 @@ var movement_input := Vector2.ZERO
 @export var auto_pickup: bool = true
 
 func _ready() -> void:
+	var parent = get_parent()
 	# If there's a saved checkpoint position, use it
-	if CheckpointManager.respawn_position != Vector3.ZERO:
+	if parent is Node3D and parent.get("next_position") != Vector3.ZERO:
+		global_position = parent.next_position
+		CheckpointManager.respawn_position = parent.next_position
+		CheckpointManager.respawn_direction = rad_to_deg(rotation.y)
+		parent.reset_next_pos()
+	elif CheckpointManager.respawn_position != Vector3.ZERO:
 		global_position = CheckpointManager.respawn_position
+		rotation.y = deg_to_rad(CheckpointManager.respawn_direction)
 	else:
 		# First time loading the scene, save the initial position
+		CheckpointManager.respawn_direction = rad_to_deg(rotation.y)
 		CheckpointManager.respawn_position = global_position
 
 func _physics_process(delta: float) -> void:
@@ -52,6 +60,8 @@ func jump_logic(delta) -> void:
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_velocity
+			StatsManager.increase_score(10.0)
+			print(global_position)
 	var gravity = jump_gravity if velocity.y > 0.0 else fall_gravity
 	velocity.y -= gravity * delta * .9
 
@@ -63,19 +73,7 @@ func _on_area_3d_body_entered(_body: Node3D) -> void:
 	reload_scene()
 
 func reload_scene() -> void:
-	var parent = get_parent()
-	parent.fade_out()
-	
-	var timer = Timer.new()
-	timer.wait_time = 0.5
-	timer.one_shot = true
-	add_child(timer)
-	timer.start()
-	
-	timer.timeout.connect(func(): 
-		get_tree().reload_current_scene.call_deferred()
-		timer.queue_free()
-	)
+	CheckpointManager.respawn()
 
 func physics_logic() -> void:
 	for i in get_slide_collision_count():

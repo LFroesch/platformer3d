@@ -8,6 +8,7 @@ data = PackedVector3Array(0.377277, 0.32938, -0.122583, 0.356153, 0.0277139, -0.
 
 [node name="Diamond_blue" type="AnimatableBody3D"]
 script = ExtResource("1_882np")
+collectible_type = 3
 
 [node name="diamond_blue2" parent="." instance=ExtResource("2_r6vrh")]
 

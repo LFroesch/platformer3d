@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddgo6h4ofku0j"]
+
+[ext_resource type="Script" uid="uid://dw1mc0s1ynm82" path="res://level.gd" id="1_8tx62"]
+[ext_resource type="PackedScene" uid="uid://cq5gowsrst4ot" path="res://Scenes/Player/player.tscn" id="2_nbbd8"]
+[ext_resource type="MeshLibrary" uid="uid://d22we3rlgg5rm" path="res://Scenes/GridMap/GridMap.tres" id="3_hr5bq"]
+[ext_resource type="PackedScene" uid="uid://cvrmkoqhae1ft" path="res://Scenes/Traps/void_zone.tscn" id="15_nv5je"]
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_8tx62")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 1, 0.886275, 1)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_nbbd8")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0, 1, 0)
+
+[node name="ConveyorBelts" type="Node3D" parent="."]
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh_library = ExtResource("3_hr5bq")
+cell_size = Vector3(6, 1, 6)
+data = {
+"cells": PackedInt32Array(-1, 65535, 0, -65536, 65535, 0, -1, 0, 0, -65536, 0, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="Traps" type="Node3D" parent="."]
+
+[node name="VoidZone" parent="Traps" instance=ExtResource("15_nv5je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="Spikes" type="Node3D" parent="Traps"]
+
+[node name="Rollers" type="Node3D" parent="Traps"]
+
+[node name="Cannons" type="Node3D" parent="Traps"]
+
+[node name="Saws" type="Node3D" parent="Traps"]
+
+[node name="Swipers" type="Node3D" parent="Traps"]
+
+[node name="Hammers" type="Node3D" parent="Traps"]
+
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="Jumpers" type="Node3D" parent="."]
+
+[node name="Collectibles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2411, 2.20788, 16.0163)
+
+[node name="Hoops" type="Node3D" parent="."]
+
+[node name="RigidBodies" type="Node3D" parent="."]
+
+[connection signal="body_entered" from="Traps/VoidZone/Area3D" to="Player" method="_on_area_3d_body_entered"]
+
+[editable path="Traps/VoidZone"]

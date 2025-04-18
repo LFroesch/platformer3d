@@ -153,6 +153,7 @@ func shoot() -> void:
 	
 	var bullet = bullet_scene.instantiate()
 	get_tree().root.add_child(bullet)
+	bullet.add_to_group("bullets")
 	bullet.global_position = spawn_point.global_position
 	var forward_direction: Vector3
 	

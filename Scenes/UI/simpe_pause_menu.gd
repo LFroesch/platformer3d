@@ -9,8 +9,10 @@ func _ready():
 	pause_menu.visible = false
 	settings_menu.visible = false
 	confirmation_dialog = ConfirmationDialog.new()
-	confirmation_dialog.dialog_text = "Are you sure you want to reset the game? All progress will be lost."
+	confirmation_dialog.dialog_text = "Are you sure you want to reset the game?\nYou cannot undo this.\nAll checkpoints and progress will be lost."
 	confirmation_dialog.title = "Reset Game"
+	var label = confirmation_dialog.get_label()
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	confirmation_dialog.get_ok_button().text = "Reset"
 	confirmation_dialog.get_cancel_button().text = "Cancel"
 	confirmation_dialog.confirmed.connect(_on_reset_confirmed)
@@ -19,6 +21,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("menu"):
 		toggle_pause_menu()
+		settings_menu.visible = false
 
 func toggle_pause_menu():
 	pause_menu.visible = !pause_menu.visible
@@ -44,25 +47,17 @@ func _on_back_button_pressed() -> void:
 
 func _on_unstuck_button_pressed() -> void:
 	get_tree().paused = false
-
-	var parent = get_parent()
-	parent.fade_out()
-	
-	var timer = Timer.new()
-	timer.wait_time = 0.5
-	timer.one_shot = true
-	add_child(timer)
-	timer.start()
-	
-	timer.timeout.connect(func(): 
-		get_tree().reload_current_scene.call_deferred()
-		timer.queue_free()
-	)
+	CheckpointManager.respawn()
 
 func _on_reset_game_button_pressed() -> void:
 	confirmation_dialog.popup_centered()
 
 func _on_reset_confirmed() -> void:
 	var reset_checkpoint = Vector3(0,0,0)
+	var current_scene = get_tree().current_scene
+	var level_one = "level1"
 	CheckpointManager.set_checkpoint(reset_checkpoint)
-	_on_unstuck_button_pressed()
+	CollectibleManager.reset_collectibles()
+	StatsManager.reset_stats()
+	get_tree().paused = false
+	current_scene.switch_level(level_one, reset_checkpoint)
