@@ -20,6 +20,7 @@ func reset_stats() -> void:
 	time = 0.0
 	score = 0.0
 	modifier = 1.0
+	current_checkpoint = 0
 	
 func increase_level() -> void:
 	level += 1

@@ -9,7 +9,10 @@ const scenes = {
 	'level3': "res://Scenes/Levels/level_3.tscn",
 	'level4': "res://Scenes/Levels/level_4.tscn",
 	'level5': "res://Scenes/Levels/level_5.tscn",
-	'levelx': "res://Scenes/Levels/final_level.tscn"
+	'levelx': "res://Scenes/Levels/final_level.tscn",
+	'tutorial': "res://Scenes/Levels/tutorial_level.tscn",
+	'practice': "res://Scenes/Levels/practice_level.tscn",
+	'lobby': "res://Scenes/Levels/lobby_level.tscn"
 }
 # Static variable to store where we're going
 static var next_position: Vector3 = Vector3.ZERO

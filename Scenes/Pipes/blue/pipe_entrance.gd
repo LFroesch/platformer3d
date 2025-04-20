@@ -30,5 +30,7 @@ func _disable_all_collision_shapes(node):
 			_disable_all_collision_shapes(child)
 
 func _on_area_3d_body_entered(_body: Node3D) -> void:
+	if target_level == 'level1':
+		StatsManager.reset_stats()
 	var current_scene = get_tree().current_scene
 	current_scene.switch_level(target_level, target_location)

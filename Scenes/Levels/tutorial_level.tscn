@@ -1,0 +1,651 @@
+[gd_scene load_steps=34 format=3 uid="uid://i3vknga4x3fb"]
+
+[ext_resource type="Script" uid="uid://dw1mc0s1ynm82" path="res://level.gd" id="1_ohf4p"]
+[ext_resource type="PackedScene" uid="uid://cq5gowsrst4ot" path="res://Scenes/Player/player.tscn" id="2_1pi2y"]
+[ext_resource type="MeshLibrary" uid="uid://d22we3rlgg5rm" path="res://Scenes/GridMap/GridMap.tres" id="3_68caq"]
+[ext_resource type="PackedScene" uid="uid://cvrmkoqhae1ft" path="res://Scenes/Traps/void_zone.tscn" id="5_c2yeb"]
+[ext_resource type="PackedScene" uid="uid://dycdghofbmmei" path="res://Scenes/Conveyors/Blue/4x_8x_1_blue_2.tscn" id="5_tbcxr"]
+[ext_resource type="PackedScene" uid="uid://sx7qflgh1710" path="res://Scenes/Conveyors/Blue/2x_4x_1_blue_2.tscn" id="6_68caq"]
+[ext_resource type="PackedScene" uid="uid://rycf66233t37" path="res://Scenes/Conveyors/Blue/2x_8x_1_blue_2.tscn" id="7_4kucd"]
+[ext_resource type="PackedScene" uid="uid://b1q8yc3clbkcw" path="res://Scenes/Conveyors/Blue/4x_4x_1_blue_2.tscn" id="8_c2yeb"]
+[ext_resource type="PackedScene" uid="uid://2c7jvhmfingd" path="res://Scenes/Pipes/blue/pipe_entrance_blue.tscn" id="9_4kucd"]
+[ext_resource type="PackedScene" uid="uid://b41lkokds57p1" path="res://Scenes/Checkpoints/checkpoint_tall_blue.tscn" id="10_c2yeb"]
+[ext_resource type="PackedScene" uid="uid://wb67748usnrx" path="res://Scenes/Traps/Cannons/cannon_blue.tscn" id="10_g3l5c"]
+[ext_resource type="PackedScene" uid="uid://bkbpfvm4wf7mk" path="res://Scenes/Traps/Spikes/spikes_2x_2x_1_neutral.tscn" id="11_sxrre"]
+[ext_resource type="PackedScene" uid="uid://dvywctjn6tvn3" path="res://Scenes/MovingPlatforms/Blue/slope_6x_6x_4_blue.tscn" id="11_u4lmr"]
+[ext_resource type="PackedScene" uid="uid://dg1psxvoum18g" path="res://Scenes/Traps/Spikes/spikes_curved_4x_2x_2_neutral.tscn" id="12_2cs5a"]
+[ext_resource type="PackedScene" uid="uid://djd5fnl667idj" path="res://Scenes/MovingPlatforms/Blue/6x_6x_1_blue.tscn" id="12_gwj07"]
+[ext_resource type="PackedScene" uid="uid://lqamfpmhiw2w" path="res://Scenes/Traps/Jumpers/jumper_blue.tscn" id="13_hj161"]
+[ext_resource type="PackedScene" uid="uid://bro3it87e1p6b" path="res://Scenes/MovingPlatforms/floor_4x_4x_1_wood.tscn" id="14_gwj07"]
+[ext_resource type="PackedScene" uid="uid://cisoa8kx14hnv" path="res://Scenes/MovingPlatforms/Blue/2x_2x_1_blue.tscn" id="16_hp0rl"]
+[ext_resource type="PackedScene" uid="uid://c56pekc28bood" path="res://Scenes/Traps/Hammers/hammer_block_spikes.tscn" id="17_ck3nf"]
+[ext_resource type="PackedScene" uid="uid://bht7db1fbbiok" path="res://Scenes/Traps/Hammers/hammer_large_spikes_blue.tscn" id="18_w35ah"]
+[ext_resource type="PackedScene" uid="uid://g3im6243e0jj" path="res://Scenes/MovingPlatforms/Blue/hole_6x_6x_1_blue.tscn" id="19_hp0rl"]
+[ext_resource type="PackedScene" uid="uid://cptm0rfej6ty7" path="res://Scenes/Traps/Spikes/vertical_roller.tscn" id="22_sac1n"]
+[ext_resource type="PackedScene" uid="uid://ndhua353nmkm" path="res://Scenes/Traps/Spikes/horizontal_roller.tscn" id="23_yjgqs"]
+[ext_resource type="PackedScene" uid="uid://dowyb4l2rf2w4" path="res://Scenes/Traps/Saws/single_blue.tscn" id="24_ubn5a"]
+[ext_resource type="PackedScene" uid="uid://b7i0vpauyfxhg" path="res://Scenes/Traps/Saws/double_blue.tscn" id="25_potyg"]
+[ext_resource type="PackedScene" uid="uid://cburkw17u03uw" path="res://Scenes/Traps/Swipers/long_quad_blue.tscn" id="26_p1m6k"]
+[ext_resource type="PackedScene" uid="uid://d328k25q6p7rt" path="res://Scenes/Traps/Cones/cone.tscn" id="27_arm0m"]
+[ext_resource type="PackedScene" uid="uid://742qyq3f0flo" path="res://Scenes/Traps/Signs/sign.tscn" id="28_1ufwv"]
+[ext_resource type="PackedScene" uid="uid://b30whm4lqvr2y" path="res://Scenes/Traps/Beach_Balls/ball.tscn" id="29_oyfm5"]
+[ext_resource type="PackedScene" uid="uid://bkme16qlw14fb" path="res://Scenes/Collectibles/diamond_blue.tscn" id="30_cc3cu"]
+[ext_resource type="PackedScene" uid="uid://dbwaai024a5ou" path="res://Scenes/Collectibles/heart_blue.tscn" id="31_nf5o0"]
+[ext_resource type="PackedScene" uid="uid://k0ew8233acr2" path="res://Scenes/Collectibles/power_blue.tscn" id="32_btopg"]
+[ext_resource type="PackedScene" uid="uid://dhm56yk2kx0in" path="res://Scenes/Collectibles/star_blue.tscn" id="33_c7ir2"]
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_ohf4p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(1, 1, 0.886275, 1)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_1pi2y")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0, 1, 0)
+
+[node name="ConveyorBelts" type="Node3D" parent="."]
+
+[node name="conveyor_4x8x1_blue2" parent="ConveyorBelts" instance=ExtResource("5_tbcxr")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, -1, -22)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_4x8x1_blue3" parent="ConveyorBelts" instance=ExtResource("5_tbcxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -22)
+
+[node name="conveyor_4x8x1_blue4" parent="ConveyorBelts" instance=ExtResource("5_tbcxr")]
+transform = Transform3D(-1, 2.6054e-15, -8.74228e-08, 0, 1, 2.98023e-08, 8.74228e-08, 2.98023e-08, -1, 4, -1, -22)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_4x8x1_blue6" parent="ConveyorBelts" instance=ExtResource("5_tbcxr")]
+transform = Transform3D(-1, 2.6054e-15, -8.74228e-08, 0, 1, 2.98023e-08, 8.74228e-08, 2.98023e-08, -1, 4, -1, -30)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_4x8x1_blue7" parent="ConveyorBelts" instance=ExtResource("5_tbcxr")]
+transform = Transform3D(-1, 2.6054e-15, -8.74228e-08, 0, 1, 2.98023e-08, 8.74228e-08, 2.98023e-08, -1, 0, -1, -38)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_2x4x1_blue2" parent="ConveyorBelts" instance=ExtResource("6_68caq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, -32)
+
+[node name="conveyor_2x4x1_blue4" parent="ConveyorBelts" instance=ExtResource("6_68caq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -40)
+
+[node name="conveyor_2x4x1_blue3" parent="ConveyorBelts" instance=ExtResource("6_68caq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1, -1, -28)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_2x4x1_blue5" parent="ConveyorBelts" instance=ExtResource("6_68caq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3, -1, -36)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_2x8x1_blue2" parent="ConveyorBelts" instance=ExtResource("7_4kucd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -30)
+
+[node name="conveyor_2x8x1_blue3" parent="ConveyorBelts" instance=ExtResource("7_4kucd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -1, -38)
+
+[node name="conveyor_4x4x1_blue2" parent="ConveyorBelts" instance=ExtResource("8_c2yeb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, -1, -28)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_4x4x1_blue4" parent="ConveyorBelts" instance=ExtResource("8_c2yeb")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4, -1, -36)
+conveyor_direction = Vector3(0, 0, 1)
+
+[node name="conveyor_4x4x1_blue3" parent="ConveyorBelts" instance=ExtResource("8_c2yeb")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -4, -1, -32)
+
+[node name="conveyor_4x4x1_blue5" parent="ConveyorBelts" instance=ExtResource("8_c2yeb")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 4, -1, -40)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh_library = ExtResource("3_68caq")
+cell_size = Vector3(6, 1, 6)
+data = {
+"cells": PackedInt32Array(-1, 65535, 0, -65536, 65535, 0, -1, 0, 0, -65536, 0, 0, -1, 65528, 0, -65536, 65528, 0, -65536, 65527, 0, -1, 65527, 0, -1, 65534, 0, -65536, 65534, 0, -65536, 65533, 0, -1, 65533, 0)
+}
+metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="MovingPlatforms" type="Node3D" parent="."]
+
+[node name="floor_4x4x1_wood" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -92)
+move_direction = Vector3(0, 0, -10)
+speed = 2.0
+wait_time = 0.0
+
+[node name="floor_4x4x1_wood2" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -102)
+move_direction = Vector3(0, 0, 10)
+speed = 2.0
+wait_time = 0.0
+
+[node name="floor_4x4x1_wood4" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -214)
+move_direction = Vector3(8, 0, 0)
+speed = 2.0
+wait_time = 0.0
+
+[node name="floor_4x4x1_wood5" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -218)
+move_direction = Vector3(-8, 0, 0)
+speed = 2.0
+wait_time = 0.0
+
+[node name="floor_4x4x1_wood6" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -222)
+move_direction = Vector3(8, 0, 0)
+speed = 2.0
+wait_time = 0.0
+
+[node name="floor_4x4x1_wood3" parent="MovingPlatforms" instance=ExtResource("14_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -92)
+move_direction = Vector3(0, 0, -10)
+speed = 2.0
+wait_time = 0.0
+
+[node name="2x2x1_blue" parent="MovingPlatforms" instance=ExtResource("16_hp0rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -117)
+
+[node name="2x2x1_blue2" parent="MovingPlatforms" instance=ExtResource("16_hp0rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, -121)
+
+[node name="2x2x1_blue3" parent="MovingPlatforms" instance=ExtResource("16_hp0rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 6, -131)
+
+[node name="slope_6x6x4_blue" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -57)
+
+[node name="slope_6x6x4_blue3" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, -191)
+
+[node name="slope_6x6x4_blue5" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -197)
+
+[node name="slope_6x6x4_blue6" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, -197)
+
+[node name="slope_6x6x4_blue4" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, -191)
+
+[node name="slope_6x6x4_blue2" parent="MovingPlatforms" instance=ExtResource("11_u4lmr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, -57)
+
+[node name="6x6x1_blue" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -63)
+
+[node name="6x6x1_blue3" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -81)
+
+[node name="6x6x1_blue5" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -87)
+
+[node name="6x6x1_blue7" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -107)
+
+[node name="6x6x1_blue8" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -107)
+
+[node name="6x6x1_blue9" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -113)
+
+[node name="6x6x1_blue10" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -113)
+
+[node name="6x6x1_blue11" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -119)
+
+[node name="6x6x1_blue13" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -131)
+
+[node name="6x6x1_blue14" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -137)
+
+[node name="6x6x1_blue15" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -143)
+
+[node name="6x6x1_blue16" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -149)
+
+[node name="6x6x1_blue17" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -155)
+
+[node name="6x6x1_blue18" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -161)
+
+[node name="6x6x1_blue19" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -167)
+
+[node name="6x6x1_blue20" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -167)
+
+[node name="6x6x1_blue21" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -173)
+
+[node name="6x6x1_blue24" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, -179)
+
+[node name="6x6x1_blue30" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, -179)
+
+[node name="6x6x1_blue31" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -4, -185)
+
+[node name="6x6x1_blue32" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -4, -185)
+
+[node name="6x6x1_blue23" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 0, -179)
+
+[node name="6x6x1_blue28" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 3, -1, -176)
+
+[node name="6x6x1_blue29" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -3, -1, -176)
+
+[node name="6x6x1_blue25" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 0, -185)
+
+[node name="6x6x1_blue33" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 0, -191)
+
+[node name="6x6x1_blue35" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 6, 0, -197)
+
+[node name="6x6x1_blue26" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -7, 0, -185)
+
+[node name="6x6x1_blue34" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -7, 0, -191)
+
+[node name="6x6x1_blue36" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -7, 0, -197)
+
+[node name="6x6x1_blue27" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -7, 0, -179)
+
+[node name="6x6x1_blue22" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -173)
+
+[node name="6x6x1_blue37" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -203)
+
+[node name="6x6x1_blue38" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -203)
+
+[node name="6x6x1_blue39" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -209)
+
+[node name="6x6x1_blue40" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -209)
+
+[node name="6x6x1_blue42" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -227)
+
+[node name="6x6x1_blue43" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -227)
+
+[node name="6x6x1_blue44" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -233)
+
+[node name="6x6x1_blue46" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -239)
+
+[node name="6x6x1_blue49" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -245)
+
+[node name="6x6x1_blue45" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -233)
+
+[node name="6x6x1_blue6" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -87)
+
+[node name="6x6x1_blue4" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -81)
+
+[node name="6x6x1_blue2" parent="MovingPlatforms" instance=ExtResource("12_gwj07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -63)
+
+[node name="hole_6x6x1_blue" parent="MovingPlatforms" instance=ExtResource("19_hp0rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -125)
+
+[node name="Traps" type="Node3D" parent="."]
+
+[node name="VoidZone" parent="Traps" instance=ExtResource("5_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="Spikes" type="Node3D" parent="Traps"]
+
+[node name="spikes_2x2x1_neutral" parent="Traps/Spikes" instance=ExtResource("11_sxrre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -135)
+
+[node name="spikes_2x2x1_neutral2" parent="Traps/Spikes" instance=ExtResource("11_sxrre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -135)
+
+[node name="spikes_2x2x1_neutral3" parent="Traps/Spikes" instance=ExtResource("11_sxrre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -135)
+
+[node name="spikes_curved_4x2x2_neutral" parent="Traps/Spikes" instance=ExtResource("12_2cs5a")]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -3, 3, -138)
+
+[node name="spikes_curved_4x2x2_neutral2" parent="Traps/Spikes" instance=ExtResource("12_2cs5a")]
+transform = Transform3D(1.17225e-07, 0, -1, 0, 1, 0, 1, 0, 1.17225e-07, 3, 3, -138)
+
+[node name="Rollers" type="Node3D" parent="Traps"]
+
+[node name="Vertical_Roller" parent="Traps/Rollers" instance=ExtResource("22_sac1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -139)
+
+[node name="Vertical_Roller2" parent="Traps/Rollers" instance=ExtResource("22_sac1n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -139)
+
+[node name="Horizontal_Roller" parent="Traps/Rollers" instance=ExtResource("23_yjgqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 10, -144)
+move_direction = Vector3(0, -5, 0)
+speed = 2.5
+wait_time = 2.0
+
+[node name="Horizontal_Roller2" parent="Traps/Rollers" instance=ExtResource("23_yjgqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 10, -144)
+move_direction = Vector3(0, -5, 0)
+speed = 2.5
+wait_time = 2.0
+
+[node name="Cannons" type="Node3D" parent="Traps"]
+
+[node name="Cannon_Blue3" parent="Traps/Cannons" instance=ExtResource("10_g3l5c")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 3, -121)
+auto_start_rotation = false
+
+[node name="Cannon_Blue2" parent="Traps/Cannons" instance=ExtResource("10_g3l5c")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 3, -117)
+auto_start_rotation = false
+
+[node name="Saws" type="Node3D" parent="Traps"]
+
+[node name="single_blue" parent="Traps/Saws" instance=ExtResource("24_ubn5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, -149)
+move_direction = Vector3(14, 0, 0)
+speed = 3.5
+wait_time = 2.0
+
+[node name="double_blue" parent="Traps/Saws" instance=ExtResource("25_potyg")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, -155)
+move_direction = Vector3(0, 6, 0)
+speed = 3.0
+wait_time = 2.0
+
+[node name="Swipers" type="Node3D" parent="Traps"]
+
+[node name="long_quad_blue" parent="Traps/Swipers" instance=ExtResource("26_p1m6k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -160)
+
+[node name="Hammers" type="Node3D" parent="Traps"]
+
+[node name="HammerBlockSpikes" parent="Traps/Hammers" instance=ExtResource("17_ck3nf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -125)
+move_direction = Vector3(0, -7, 0)
+speed = 14.0
+wait_time = 2.0
+
+[node name="hammer_large_spikes_blue" parent="Traps/Hammers" instance=ExtResource("18_w35ah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 7, -131)
+
+[node name="Checkpoints" type="Node3D" parent="."]
+
+[node name="Checkpoint_Tall_Blue" parent="Checkpoints" instance=ExtResource("10_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -44)
+checkpoint_number = 1
+facing_direction = 90.0
+
+[node name="Checkpoint_Tall_Blue2" parent="Checkpoints" instance=ExtResource("10_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -84)
+checkpoint_number = 2
+facing_direction = 90.0
+
+[node name="Checkpoint_Tall_Blue3" parent="Checkpoints" instance=ExtResource("10_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -110)
+checkpoint_number = 3
+facing_direction = 90.0
+
+[node name="Checkpoint_Tall_Blue4" parent="Checkpoints" instance=ExtResource("10_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -170)
+checkpoint_number = 4
+facing_direction = 90.0
+
+[node name="Checkpoint_Tall_Blue5" parent="Checkpoints" instance=ExtResource("10_c2yeb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -206)
+checkpoint_number = 5
+facing_direction = 90.0
+
+[node name="Jumpers" type="Node3D" parent="."]
+
+[node name="jumper_blue" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -65)
+jump_force = 10.0
+
+[node name="jumper_blue2" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -65)
+jump_force = 20.0
+
+[node name="jumper_blue3" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -65)
+jump_force = 30.0
+
+[node name="jumper_blue4" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3, -65)
+jump_force = 40.0
+
+[node name="jumper_blue5" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -65)
+jump_force = 60.0
+
+[node name="jumper_blue6" parent="Jumpers" instance=ExtResource("13_hj161")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, -65)
+jump_force = 100.0
+
+[node name="Collectibles" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2411, 2.20788, 16.0163)
+
+[node name="Hoops" type="Node3D" parent="."]
+
+[node name="Pipes" type="Node3D" parent="."]
+
+[node name="Pipe_Entrance_Blue" parent="Pipes" instance=ExtResource("9_4kucd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -247)
+target_level = "lobby"
+
+[node name="Pipe_Entrance_Blue2" parent="Pipes" instance=ExtResource("9_4kucd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+target_level = "lobby"
+
+[node name="Text" type="Node3D" parent="."]
+
+[node name="TrialRunTutorial" type="Label3D" parent="Text"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -7, 2, -3)
+text = "Trial Run: Tutorial"
+font_size = 100
+
+[node name="Movement1" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 4, -13)
+text = "WASD / Controller to Move
+"
+font_size = 100
+
+[node name="Movement2" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 3, -13)
+text = "Shift / Left Trigger to Run"
+font_size = 100
+
+[node name="Movement3" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 2, -13)
+text = "Space Bar / A to Jump"
+font_size = 100
+
+[node name="Movement4" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -7, 1, -13)
+text = "Escape for Menu"
+font_size = 100
+
+[node name="Skip Tutorial" type="Label3D" parent="Text"]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 7, 2, -6)
+text = "Back to Lobby"
+font_size = 100
+
+[node name="Conveyor1" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7, 2, -23)
+text = "Conveyor Belts push you "
+font_size = 100
+
+[node name="Checkpoints1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 4, -43)
+text = "These are checkpoints, if you die
+"
+font_size = 100
+
+[node name="Jumpers1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 6, -68)
+text = "Jumpers launch you into the air!"
+font_size = 100
+
+[node name="MovingPlatforms1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 6, -90)
+text = "Moving Platforms are everywhere!
+"
+font_size = 100
+
+[node name="Traps1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 6, -115)
+text = "There are all types of traps to watch out for:"
+font_size = 100
+
+[node name="RigidBodies1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 6, -176)
+text = "These are just some fun movable items you may
+"
+font_size = 100
+
+[node name="Collectibles1" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 7, -235)
+text = "You can pick up these items / boosts throughout the game
+"
+font_size = 100
+
+[node name="EndOfTutorial1" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 2.08616e-07, 0, 1, 0, -2.08616e-07, 0, 1, 0, 6, -251)
+text = "End of the tutorial!"
+font_size = 100
+
+[node name="EndOfTutorial2" type="Label3D" parent="Text"]
+transform = Transform3D(1, 0, 2.08616e-07, 0, 1, 0, -2.08616e-07, 0, 1, 0, 5, -251)
+text = "Go make some jumps!"
+font_size = 100
+
+[node name="Collectibles2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 6, -235)
+text = "Currently they are not really being used, more for "
+font_size = 100
+
+[node name="Collectibles3" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 5, -235)
+text = "completionist/exploring type players."
+font_size = 100
+
+[node name="RigidBodies2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 5, -176)
+text = "run into throughout the game!"
+font_size = 100
+
+[node name="Traps2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 5, -115)
+text = "Here are the different types so you"
+font_size = 100
+
+[node name="Traps3" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 4, -115)
+text = "can get a better feel for them!"
+font_size = 100
+
+[node name="MovingPlatforms2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 5, -90)
+text = "Take your time to see their movement,"
+font_size = 100
+
+[node name="MovingPlatforms3" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 4, -90)
+text = "and make sure to land on it :P"
+font_size = 100
+
+[node name="Jumpers2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 5, -68)
+text = "They have different strenths, so be careful,"
+font_size = 100
+
+[node name="Jumpers3" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 4, -68)
+text = "but they can come in handy!"
+font_size = 100
+
+[node name="Checkpoints3" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 2, -43)
+text = "checkpoint. You must go through "
+font_size = 100
+
+[node name="Checkpoints4" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 1, -43)
+text = "them to activate them."
+font_size = 100
+
+[node name="Checkpoints2" type="Label3D" parent="Text"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -7, 3, -43)
+text = "you will respawn at your last "
+font_size = 100
+
+[node name="Conveyor2" type="Label3D" parent="Text"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 7, 1, -23)
+text = "in the direction of the arrow!"
+font_size = 100
+
+[node name="RigidBodies" type="Node3D" parent="."]
+
+[node name="Cone" parent="RigidBodies" instance=ExtResource("27_arm0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3, -186)
+
+[node name="Cone2" parent="RigidBodies" instance=ExtResource("27_arm0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -3, -183)
+
+[node name="Cone3" parent="RigidBodies" instance=ExtResource("27_arm0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -3, -185)
+
+[node name="Sign" parent="RigidBodies" instance=ExtResource("28_1ufwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -185)
+
+[node name="Sign2" parent="RigidBodies" instance=ExtResource("28_1ufwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, -183)
+
+[node name="Ball" parent="RigidBodies" instance=ExtResource("29_oyfm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -179)
+
+[node name="Ball2" parent="RigidBodies" instance=ExtResource("29_oyfm5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -2, -180)
+
+[node name="Diamond_blue" parent="." instance=ExtResource("30_cc3cu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -235)
+
+[node name="Heart_blue" parent="." instance=ExtResource("31_nf5o0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -235)
+
+[node name="Power_blue" parent="." instance=ExtResource("32_btopg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -235)
+
+[node name="Star_blue" parent="." instance=ExtResource("33_c7ir2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -235)
+
+[connection signal="body_entered" from="Traps/VoidZone/Area3D" to="Player" method="_on_area_3d_body_entered"]
+
+[editable path="Traps/VoidZone"]

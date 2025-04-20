@@ -20,10 +20,14 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("menu"):
-		toggle_pause_menu()
-		settings_menu.visible = false
+		# Only toggle the menu if we're not currently respawning
+		if not CheckpointManager.is_respawning:
+			toggle_pause_menu()
+			settings_menu.visible = false
 
 func toggle_pause_menu():
+	if CheckpointManager.is_respawning:
+		return
 	pause_menu.visible = !pause_menu.visible
 	
 	get_tree().paused = pause_menu.visible
@@ -61,3 +65,18 @@ func _on_reset_confirmed() -> void:
 	StatsManager.reset_stats()
 	get_tree().paused = false
 	current_scene.switch_level(level_one, reset_checkpoint)
+
+
+func _on_lobby_button_pressed() -> void:
+	var reset_checkpoint = Vector3(0,0,0)
+	var current_scene = get_tree().current_scene
+	var lobby = "lobby"
+	CheckpointManager.set_checkpoint(reset_checkpoint)
+	CollectibleManager.reset_collectibles()
+	StatsManager.reset_stats()
+	get_tree().paused = false
+	current_scene.switch_level(lobby, reset_checkpoint)
+
+
+func _on_update_button_pressed() -> void:
+	OS.shell_open("https://lfroesch.itch.io/trial-run")

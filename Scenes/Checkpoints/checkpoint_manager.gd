@@ -3,6 +3,7 @@ extends Node
 
 var respawn_position: Vector3 = Vector3.ZERO
 var respawn_direction: float = 0.0
+var is_respawning: bool = false
 
 func _ready():
 	get_tree().root.connect("ready", _on_scene_changed)
@@ -13,6 +14,9 @@ func set_checkpoint(position: Vector3, direction: float = 0.0) -> void:
 	print("Checkpoint set at: ", position, " facing: ", direction)
 
 func respawn() -> void:
+	if is_respawning:
+		return
+	is_respawning = true
 	StatsManager.record_death()
 	get_tree().call_group("bullets", "queue_free")
 	# Get the current scene root
@@ -31,6 +35,7 @@ func respawn() -> void:
 	
 	timer.timeout.connect(func():
 		get_tree().reload_current_scene.call_deferred()
+		is_respawning = false
 		timer.queue_free()
 	)
 
