@@ -842,7 +842,7 @@ reverse_rotation = true
 [node name="FinishLine" parent="." instance=ExtResource("37_xo6ri")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 63, 47)
 checkpoint_number = 4
-target_level = "levelx"
+target_level = "level3"
 
 [node name="platform_2x2x2_blue5" parent="." instance=ExtResource("38_potos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 45, 35)
